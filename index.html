@@ -3,268 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>橋本研究室 — AI × Robotics Lab | 兵庫県立大学</title>
+<title>橋本研究室 — AI × Robotics | 兵庫県立大学</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg-primary:#0a0a0c;--bg-secondary:#111115;--bg-card:#16161b;--bg-card-hover:#1c1c22;--text-primary:#e8e6e1;--text-secondary:#9a9790;--text-muted:#5c5a55;--accent:#c5f467;--accent-dim:#8faf3a;--accent-glow:rgba(197,244,103,0.08);--border:#2a2a30;--border-light:#3a3a42;--serif:'DM Serif Display',Georgia,serif;--sans:'Noto Sans JP',-apple-system,sans-serif;--mono:'JetBrains Mono',monospace}
+:root{
+  --bg:#ffffff;--bg-alt:#f6f6f8;--bg-dark:#1a1a2e;
+  --text:#222;--text-sub:#555;--text-muted:#999;
+  --accent:#2d5af0;--accent-light:#eef2ff;
+  --border:#e0e0e6;
+  --sans:'Noto Sans JP','Inter',-apple-system,sans-serif;
+  --en:'Inter','Noto Sans JP',sans-serif;
+  --max:1100px;
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg-primary);color:var(--text-primary);line-height:1.8;font-weight:400;overflow-x:hidden}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,12,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:var(--serif);font-size:1.15rem;color:var(--text-primary);text-decoration:none;letter-spacing:-0.02em}
-.logo span{color:var(--accent)}
-nav ul{display:flex;list-style:none;gap:1.6rem}
-nav a.nl{color:var(--text-secondary);text-decoration:none;font-size:0.82rem;font-weight:500;transition:color 0.2s}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.9;font-weight:400}
+
+/* ── Navigation ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.06)}
+.nav-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 2rem}
+.logo{font-family:var(--en);font-weight:700;font-size:0.95rem;color:var(--text);text-decoration:none;letter-spacing:0.02em}
+.logo span{font-weight:400;color:var(--text-muted);margin-left:0.4rem;font-size:0.82rem}
+nav ul{display:flex;list-style:none;gap:2rem}
+nav a.nl{color:var(--text-sub);text-decoration:none;font-family:var(--en);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s}
 nav a.nl:hover{color:var(--accent)}
-.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(ellipse,var(--accent-glow),transparent 70%);pointer-events:none}
-.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,5vw,4rem);line-height:1.2;letter-spacing:-0.03em;margin-bottom:0.5rem}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero .hero-sub{font-size:1.15rem;color:var(--text-secondary);margin-bottom:1.5rem;font-weight:300}
-.hero p{font-size:0.95rem;color:var(--text-secondary);max-width:500px;margin-bottom:2rem;font-weight:300}
-.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;border:1px solid var(--border);border-radius:999px;font-size:0.78rem;color:var(--text-muted);font-family:var(--mono);margin-bottom:1.5rem}
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pd 2s ease infinite}
-@keyframes pd{0%,100%{opacity:1}50%{opacity:0.3}}
-.hero-visual{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--bg-secondary)}
-.hero-visual .pa{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 40%,rgba(197,244,103,0.06) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(197,244,103,0.03) 0%,transparent 50%),var(--bg-secondary)}
-.hero-visual svg{width:55%;opacity:0.2}
-.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;background:var(--accent);color:var(--bg-primary);font-weight:600;font-size:0.88rem;border-radius:8px;text-decoration:none;transition:all 0.2s}
-.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
-section{padding:5rem 2rem;max-width:1200px;margin:0 auto}
-.sl{font-family:var(--mono);font-size:0.72rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem}
-section h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);letter-spacing:-0.02em;margin-bottom:0.75rem}
-.sd{color:var(--text-secondary);font-size:1rem;max-width:640px;margin-bottom:2.5rem;font-weight:300}
-.sim-container{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--bg-secondary)}
-.sim-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--border);background:var(--bg-card);flex-wrap:wrap;gap:0.5rem}
-.sim-header h3{font-family:var(--mono);font-size:0.82rem;font-weight:500}
-.sc{display:flex;gap:0.5rem;align-items:center}
-.si{display:flex;gap:2rem;padding:1rem 1.5rem;border-top:1px solid var(--border);background:var(--bg-card);font-family:var(--mono);font-size:0.72rem;color:var(--text-muted);flex-wrap:wrap}
-.si .ii span{color:var(--text-secondary);margin-left:0.3rem}
-.about-layout{display:grid;grid-template-columns:200px 1fr;gap:3rem;align-items:start}
-.about-avatar{width:200px;height:200px;border-radius:16px;background:linear-gradient(135deg,var(--accent-glow),var(--bg-card));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:4rem;color:var(--accent-dim)}
-.about-text h3{font-family:var(--serif);font-size:1.6rem;margin-bottom:0.25rem}
-.about-text .at{font-size:0.85rem;color:var(--accent-dim);font-family:var(--mono);margin-bottom:1rem}
-.about-text p{color:var(--text-secondary);font-size:0.92rem;margin-bottom:0.75rem;font-weight:300}
-.akw{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem}
-.akw .kw{padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:999px;font-size:0.75rem;color:var(--text-secondary);font-family:var(--mono)}
-.alinks{display:flex;gap:1rem;margin-top:1.25rem;flex-wrap:wrap}
-.alinks a{font-size:0.82rem;color:var(--accent);text-decoration:none;border:1px solid var(--border);padding:0.35rem 0.8rem;border-radius:6px;transition:all 0.15s}
-.alinks a:hover{border-color:var(--accent);background:var(--accent-glow)}
-.ptabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.ptab{padding:0.4rem 1rem;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--text-secondary);font-family:var(--mono);font-size:0.78rem;cursor:pointer;transition:all 0.15s}
-.ptab.active{background:var(--accent);color:var(--bg-primary);border-color:var(--accent);font-weight:600}
-.ptab:hover:not(.active){border-color:var(--accent);color:var(--accent)}
-.pg{display:none}
-.pg.active{display:flex;flex-direction:column;gap:0.75rem}
-.pi{padding:1.25rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;transition:all 0.2s}
-.pi:hover{border-color:var(--border-light)}
-.py{font-family:var(--mono);font-size:0.68rem;color:var(--accent-dim);margin-bottom:0.3rem}
-.pi h4{font-size:0.92rem;font-weight:600;margin-bottom:0.25rem;line-height:1.5}
-.pa2{font-size:0.82rem;color:var(--text-secondary);font-weight:300}
-.pv{font-size:0.78rem;color:var(--text-muted);font-style:italic}
-.pb{display:inline-block;font-size:0.65rem;padding:0.15rem 0.4rem;border-radius:3px;font-family:var(--mono);margin-left:0.3rem;background:rgba(197,244,103,0.15);color:var(--accent)}
-.mgt{font-size:0.85rem;font-weight:600;color:var(--text-muted);margin-bottom:1rem;margin-top:2rem;font-family:var(--mono);letter-spacing:0.05em;text-transform:uppercase}
-.mgt:first-of-type{margin-top:0}
-.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-.mc{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;display:flex;gap:1rem;align-items:center;transition:all 0.2s}
-.mc:hover{border-color:var(--border-light)}
-.mi{width:48px;height:48px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:var(--accent-dim);flex-shrink:0}
-.mn h4{font-size:0.95rem;font-weight:600}
-.mn .mr{font-size:0.75rem;color:var(--text-muted);font-family:var(--mono)}
-.mn .mt{font-size:0.82rem;color:var(--text-secondary);font-weight:300;margin-top:0.2rem}
-.ag{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.am{border-radius:12px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/10}
-.am iframe{width:100%;height:100%;border:none;filter:grayscale(0.8) invert(0.92) contrast(0.9)}
-.ad{display:flex;flex-direction:column;gap:1rem}
-.ai{padding:1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:10px}
-.ai .lb{font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem}
-.ai .vl{font-size:0.92rem}
-.ai a{color:var(--accent);text-decoration:none}
-.ai a:hover{text-decoration:underline}
-footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.8rem;color:var(--text-muted)}
-footer a{color:var(--accent-dim);text-decoration:none}
+.nav-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text)}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;background:var(--bg)}
+.hero-content{max-width:800px}
+.hero-label{font-family:var(--en);font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;line-height:1.3;letter-spacing:-0.02em;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:1.05rem;color:var(--text-sub);max-width:600px;margin:0 auto 2.5rem;font-weight:300;line-height:2}
+.hero-cta{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 2rem;background:var(--accent);color:#fff;font-weight:600;font-size:0.88rem;border-radius:6px;text-decoration:none;transition:all 0.2s}
+.hero-cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* ── Sections ── */
+section{padding:6rem 2rem;max-width:var(--max);margin:0 auto}
+.section-full{max-width:100%;padding:6rem 0}
+.section-inner{max-width:var(--max);margin:0 auto;padding:0 2rem}
+.section-label{font-family:var(--en);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem}
+section h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-0.01em;margin-bottom:1rem;line-height:1.4}
+.section-desc{color:var(--text-sub);font-size:0.95rem;max-width:640px;margin-bottom:2.5rem;font-weight:300;line-height:2}
+
+.divider{border:none;height:1px;background:var(--border);max-width:var(--max);margin:0 auto}
+
+/* ── Demo ── */
+.demo-wrap{background:var(--bg-dark);border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12)}
+.demo-bar{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;background:rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.08);flex-wrap:wrap;gap:0.5rem}
+.demo-bar h3{font-family:var(--en);font-size:0.78rem;font-weight:500;color:rgba(255,255,255,0.7)}
+.demo-bar a{font-family:var(--en);font-size:0.72rem;padding:0.3rem 0.7rem;border-radius:4px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);text-decoration:none;transition:all 0.15s}
+.demo-bar a:hover{border-color:rgba(255,255,255,0.4);color:#fff}
+.demo-info{display:flex;gap:2rem;padding:0.75rem 1.25rem;border-top:1px solid rgba(255,255,255,0.08);font-family:var(--en);font-size:0.68rem;color:rgba(255,255,255,0.35);flex-wrap:wrap}
+.demo-info span{color:rgba(255,255,255,0.55);margin-left:0.3rem}
+.demo-src{margin-top:0.75rem;font-size:0.78rem;color:var(--text-muted)}
+.demo-src a{color:var(--accent);text-decoration:none}
+.demo-src a:hover{text-decoration:underline}
+
+/* ── About (PI) ── */
+.about-grid{display:grid;grid-template-columns:180px 1fr;gap:2.5rem;align-items:start}
+.about-avatar{width:180px;height:180px;border-radius:12px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--accent);font-weight:700}
+.about-body h3{font-size:1.4rem;font-weight:700;margin-bottom:0.15rem}
+.about-body .title{font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem}
+.about-body p{color:var(--text-sub);font-size:0.92rem;margin-bottom:0.6rem;font-weight:300}
+.kw-list{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem}
+.kw-list span{padding:0.25rem 0.65rem;border:1px solid var(--border);border-radius:999px;font-size:0.72rem;color:var(--text-sub);font-family:var(--en)}
+.about-links{display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap}
+.about-links a{font-size:0.78rem;color:var(--accent);text-decoration:none;padding:0.3rem 0.75rem;border:1px solid var(--border);border-radius:5px;transition:all 0.15s;font-weight:500}
+.about-links a:hover{border-color:var(--accent);background:var(--accent-light)}
+
+/* ── Research ── */
+.bg-alt{background:var(--bg-alt)}
+.research-text{color:var(--text-sub);font-size:0.95rem;max-width:780px;font-weight:300;line-height:2;margin-bottom:1rem}
+
+/* ── Publications ── */
+.pub-tabs{display:flex;gap:0.4rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.pub-tab{padding:0.4rem 1rem;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text-sub);font-family:var(--en);font-size:0.75rem;cursor:pointer;transition:all 0.15s;font-weight:500}
+.pub-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pub-tab:hover:not(.active){border-color:var(--accent);color:var(--accent)}
+.pub-group{display:none}
+.pub-group.active{display:flex;flex-direction:column;gap:0.6rem}
+.pub-item{padding:1rem 1.25rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;transition:border-color 0.2s}
+.pub-item:hover{border-color:#bbb}
+.pub-year{font-family:var(--en);font-size:0.68rem;color:var(--accent);font-weight:600;margin-bottom:0.2rem}
+.pub-item h4{font-size:0.88rem;font-weight:600;margin-bottom:0.15rem;line-height:1.5}
+.pub-authors{font-size:0.8rem;color:var(--text-sub);font-weight:300}
+.pub-venue{font-size:0.76rem;color:var(--text-muted);font-style:italic}
+.pub-badge{display:inline-block;font-size:0.62rem;padding:0.1rem 0.35rem;border-radius:3px;font-family:var(--en);margin-left:0.3rem;background:var(--accent-light);color:var(--accent);font-weight:600}
+
+/* ── Members ── */
+.member-group-title{font-size:0.75rem;font-weight:700;color:var(--text-muted);margin-bottom:0.75rem;margin-top:1.5rem;font-family:var(--en);letter-spacing:0.08em;text-transform:uppercase}
+.member-group-title:first-of-type{margin-top:0}
+.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.member-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;gap:1rem;align-items:center;transition:border-color 0.2s}
+.member-card:hover{border-color:#bbb}
+.member-icon{width:48px;height:48px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--accent);font-weight:700;flex-shrink:0}
+.member-info h4{font-size:0.92rem;font-weight:600}
+.member-info .role{font-size:0.72rem;color:var(--text-muted);font-family:var(--en);font-weight:500}
+.member-info .interests{font-size:0.8rem;color:var(--text-sub);font-weight:300;margin-top:0.15rem}
+
+/* ── Access ── */
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.access-map{border-radius:10px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/10}
+.access-map iframe{width:100%;height:100%;border:none}
+.access-details{display:flex;flex-direction:column;gap:0.75rem}
+.access-item{padding:1rem;background:var(--bg-alt);border-radius:8px}
+.access-item .label{font-family:var(--en);font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:0.3rem}
+.access-item .value{font-size:0.88rem}
+.access-item a{color:var(--accent);text-decoration:none}
+.access-item a:hover{text-decoration:underline}
+
+/* ── Footer ── */
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:0.78rem;color:var(--text-muted)}
+footer a{color:var(--text-sub);text-decoration:none}
 footer a:hover{color:var(--accent)}
-.dv{max-width:1200px;margin:0 auto;padding:0 2rem}
-.dv hr{border:none;height:1px;background:var(--border)}
-.fu{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
-.fu.visible{opacity:1;transform:translateY(0)}
-@media(max-width:768px){.hero-inner{grid-template-columns:1fr;gap:2rem}nav ul{display:none}.about-layout{grid-template-columns:1fr}.about-avatar{width:120px;height:120px;font-size:2.5rem;margin:0 auto}.ag{grid-template-columns:1fr}section{padding:3.5rem 1.25rem}}
+footer .footer-links{margin-top:0.5rem}
+
+/* ── Animation ── */
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  nav ul{display:none}
+  nav ul.open{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem;gap:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+  .nav-toggle{display:block}
+  .hero{min-height:auto;padding:7rem 1.5rem 3rem}
+  .hero h1{font-size:2rem}
+  .about-grid{grid-template-columns:1fr}
+  .about-avatar{width:120px;height:120px;font-size:2.5rem;margin:0 auto}
+  .access-grid{grid-template-columns:1fr}
+  section{padding:4rem 1.5rem}
+  .section-inner{padding:0 1.5rem}
+}
 </style>
 </head>
 <body>
-<nav><div class="nav-inner">
-<a href="#" class="logo">Hashimoto<span>Lab</span></a>
-<ul>
-<li><a href="#demo" class="nl">デモ</a></li>
-<li><a href="#about" class="nl">紹介</a></li>
-<li><a href="#research" class="nl">研究</a></li>
-<li><a href="#publications" class="nl">業績</a></li>
-<li><a href="#members" class="nl">メンバー</a></li>
-<li><a href="#access" class="nl">アクセス</a></li>
-</ul>
-</div></nav>
 
-<header class="hero"><div class="hero-inner">
-<div class="fu">
-<div class="hero-badge"><span class="dot"></span><a href="https://www.eng.u-hyogo.ac.jp/" target="_blank" style="color:inherit;text-decoration:none">兵庫県立大学 工学研究科</a></div>
-<h1>AI × <em>Robotics</em></h1>
-<div class="hero-sub">橋本研究室 — 知能ロボティクス</div>
-<p>AI とロボットを融合した知能システムの研究に取り組みます。機械学習・強化学習・数理最適化・シミュレーション技術を活用し、ロボットがより賢く、柔軟に行動できる仕組みを追求します。</p>
-<a href="#demo" class="btn-primary">インタラクティブ デモ ↓</a>
+<!-- Navigation -->
+<nav>
+<div class="nav-inner">
+  <a href="#" class="logo">HASHIMOTO LABORATORY<span>兵庫県立大学</span></a>
+  <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
+  <ul>
+    <li><a href="#mission" class="nl">Mission</a></li>
+    <li><a href="#demo" class="nl">Demo</a></li>
+    <li><a href="#research" class="nl">Research</a></li>
+    <li><a href="#publications" class="nl">Publications</a></li>
+    <li><a href="#team" class="nl">Team</a></li>
+    <li><a href="#access" class="nl">Access</a></li>
+  </ul>
 </div>
-<div class="hero-visual fu" style="transition-delay:0.15s"><div class="pa">
-<svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-<ellipse cx="100" cy="80" rx="30" ry="14" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6"/>
-<path d="M75 72 L40 45 L28 50" stroke="currentColor" stroke-width="1.2" fill="none"/>
-<path d="M72 80 L35 78 L22 85" stroke="currentColor" stroke-width="1.2" fill="none"/>
-<path d="M75 88 L40 110 L30 118" stroke="currentColor" stroke-width="1.2" fill="none"/>
-<path d="M125 72 L160 45 L172 50" stroke="currentColor" stroke-width="1.2" fill="none"/>
-<path d="M128 80 L165 78 L178 85" stroke="currentColor" stroke-width="1.2" fill="none"/>
-<path d="M125 88 L160 110 L170 118" stroke="currentColor" stroke-width="1.2" fill="none"/>
-<circle cx="28" cy="50" r="2" fill="#c5f467" opacity="0.6"/>
-<circle cx="22" cy="85" r="2" fill="#c5f467" opacity="0.6"/>
-<circle cx="30" cy="118" r="2" fill="#c5f467" opacity="0.6"/>
-<circle cx="172" cy="50" r="2" fill="#c5f467" opacity="0.6"/>
-<circle cx="178" cy="85" r="2" fill="#c5f467" opacity="0.6"/>
-<circle cx="170" cy="118" r="2" fill="#c5f467" opacity="0.6"/>
-</svg>
-</div></div>
-</div></header>
+</nav>
 
-<div class="dv"><hr></div>
+<!-- Hero -->
+<header class="hero">
+<div class="hero-content fade-up">
+  <div class="hero-label">University of Hyogo — Graduate School of Engineering</div>
+  <h1>AI とロボティクスで<br>知能を<em>つくる</em></h1>
+  <p>機械学習・強化学習・数理最適化・シミュレーション技術を融合し、<br>ロボットがより賢く、柔軟に行動できる仕組みを追求します。</p>
+  <a href="#demo" class="hero-cta">インタラクティブ デモ ↓</a>
+</div>
+</header>
 
+<hr class="divider">
+
+<!-- Mission / About -->
+<section id="mission">
+<div class="fade-up">
+  <div class="section-label">Mission</div>
+  <h2>メンバー紹介</h2>
+</div>
+<div class="about-grid fade-up" style="transition-delay:0.1s">
+  <div class="about-avatar">橋</div>
+  <div class="about-body">
+    <h3>橋本 尚典</h3>
+    <div class="title">Takanori Hashimoto — 兵庫県立大学 大学院工学研究科 工学専攻 知能情報分野</div>
+    <p>生物の運動制御に着想を得た六足ロボットの歩行制御を研究しています。CPG を構造的な事前知識として活用し、CMA-ES による進化計算やモデル予測制御（MPC）と組み合わせた階層的制御アーキテクチャの構築を目指しています。</p>
+    <p>また、ホップフィールドネットワークの連想記憶や Neural ODE によるシステム同定など、ニューラルネットワークの力学系的側面にも関心があります。</p>
+    <div class="kw-list">
+      <span>六足ロボット</span><span>CPG</span><span>モデル予測制御</span><span>強化学習</span><span>進化計算</span><span>ホップフィールドネットワーク</span>
+    </div>
+    <div class="about-links">
+      <a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a>
+      <a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">研究グループ</a>
+      <a href="https://researchmap.jp/Takanori_Hashimoto" target="_blank">researchmap</a>
+      <a href="https://orcid.org/0009-0004-3042-8267" target="_blank">ORCID</a>
+      <a href="https://github.com/Taka-Hashimoto" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="divider">
+
+<!-- Demo -->
 <section id="demo">
-<div class="fu"><div class="sl">Interactive Demo</div><h2>六足歩行シミュレーション</h2>
-<p class="sd">MuJoCo の物理エンジンがブラウザ上で直接動作しています。マウスドラッグで視点を変更できます。</p></div>
-<div class="sim-container fu" style="transition-delay:0.1s">
-<div class="sim-header"><h3>MuJoCo WASM · PhantomX Hexapod</h3>
-<div class="sc">
-<a href="https://taka-hashimoto.github.io/mujoco_wasm/" target="_blank" style="font-family:var(--mono);font-size:0.75rem;padding:0.35rem 0.75rem;border-radius:6px;border:1px solid var(--border);color:var(--text-primary);text-decoration:none;transition:all 0.15s">↗ 全画面で開く</a>
-</div></div>
-<div style="position:relative;width:100%;aspect-ratio:16/9;background:#0d0d10">
-<iframe id="mujoco-iframe" src="https://taka-hashimoto.github.io/mujoco_wasm/" style="width:100%;height:100%;border:none;display:block" loading="lazy" allow="autoplay"></iframe>
+<div class="fade-up">
+  <div class="section-label">Interactive Demo</div>
+  <h2>六足歩行シミュレーション</h2>
+  <p class="section-desc">MuJoCo の物理エンジンがブラウザ上で直接動作しています。WASD キーでロボットを操作できます。</p>
 </div>
-<div class="si">
-<div class="ii">エンジン<span>MuJoCo 3.x WASM</span></div>
-<div class="ii">モデル<span>PhantomX Hexapod (18 DOF)</span></div>
-<div class="ii">レンダリング<span>Three.js / WebGL</span></div>
-<div class="ii">操作<span>マウスドラッグで回転 / スクロールでズーム</span></div>
-</div></div>
-<p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted)">※ ソースコード: <a href="https://github.com/Taka-Hashimoto/mujoco_wasm" style="color:var(--accent)">Taka-Hashimoto/mujoco_wasm</a> · 学習コード: <a href="https://github.com/Taka-Hashimoto/hexapod-mjx" style="color:var(--accent)">hexapod-mjx</a></p>
+<div class="demo-wrap fade-up" style="transition-delay:0.1s">
+  <div class="demo-bar">
+    <h3>MuJoCo WASM · PhantomX Hexapod</h3>
+    <a href="https://taka-hashimoto.github.io/mujoco_wasm/" target="_blank">&#8599; 全画面で開く</a>
+  </div>
+  <div style="position:relative;width:100%;aspect-ratio:16/9;background:#0d0d10">
+    <iframe src="https://taka-hashimoto.github.io/mujoco_wasm/" style="width:100%;height:100%;border:none;display:block" loading="lazy" allow="autoplay"></iframe>
+  </div>
+  <div class="demo-info">
+    <div>Engine<span>MuJoCo 3.x WASM</span></div>
+    <div>Model<span>PhantomX Hexapod (18 DOF)</span></div>
+    <div>Rendering<span>Three.js / WebGL</span></div>
+    <div>Controls<span>W/A/S/D or Arrow Keys</span></div>
+  </div>
+</div>
+<p class="demo-src">Source: <a href="https://github.com/Taka-Hashimoto/mujoco_wasm">Taka-Hashimoto/mujoco_wasm</a> · Model: <a href="https://github.com/Taka-Hashimoto/hexapod-mjx">hexapod-mjx</a></p>
 </section>
 
-<div class="dv"><hr></div>
+<hr class="divider">
 
-<section id="about">
-<div class="fu"><div class="sl">About</div><h2>メンバー紹介</h2></div>
-<div class="about-layout fu" style="transition-delay:0.1s">
-<div class="about-avatar">橋</div>
-<div class="about-text">
-<h3>橋本 尚典</h3>
-<div class="at">Takanori Hashimoto — 兵庫県立大学 大学院工学研究科 工学専攻 知能情報分野</div>
-<p>生物の運動制御に着想を得た六足ロボットの歩行制御を研究しています。CPG を構造的な事前知識として活用し、CMA-ES による進化計算やモデル予測制御（MPC）と組み合わせた階層的制御アーキテクチャの構築を目指しています。</p>
-<p>また、ホップフィールドネットワークの連想記憶や Neural ODE によるシステム同定など、ニューラルネットワークの力学系的側面にも関心があります。</p>
-<div class="akw"><span class="kw">六足ロボット</span><span class="kw">CPG</span><span class="kw">モデル予測制御</span><span class="kw">強化学習</span><span class="kw">進化計算</span><span class="kw">ホップフィールドネットワーク</span></div>
-<div class="alinks">
-<a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a>
-<a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">研究グループ</a>
-<a href="https://researchmap.jp/Takanori_Hashimoto" target="_blank">researchmap</a>
-<a href="https://orcid.org/0009-0004-3042-8267" target="_blank">ORCID</a>
-<a href="https://github.com/Taka-Hashimoto" target="_blank">GitHub</a>
-</div></div></div>
+<!-- Research -->
+<div class="section-full bg-alt">
+<section id="research" style="padding-top:0;padding-bottom:0">
+<div class="section-inner" style="padding-top:6rem;padding-bottom:6rem">
+  <div class="fade-up">
+    <div class="section-label">Research</div>
+    <h2>研究内容</h2>
+  </div>
+  <div class="fade-up" style="transition-delay:0.1s">
+    <p class="research-text">本研究室では、AI とロボットを融合した知能システムの研究に取り組みます。近年、人工知能の発展によって画像・言語・行動を扱う技術が急速に進展しています。一方で、実世界で活動するロボットには、周囲の環境を認識し、状況に応じて適切に判断し、安定して行動することが求められます。</p>
+    <p class="research-text">具体的には、ロボットの運動学習・制御、シミュレーションを活用した学習（Sim-to-Real）、視覚や言語を活用した知能化などを主なテーマとして扱います。AI 技術を単に使うだけでなく、「なぜその行動ができるのか」を理解できる数理的な視点も重視し、理論と実装の両面から研究を進めます。</p>
+  </div>
+</div>
 </section>
+</div>
 
-<div class="dv"><hr></div>
-
-<section id="research">
-<div class="fu"><div class="sl">Research</div><h2>研究内容</h2>
-<p class="sd" style="max-width:780px">本研究室では、AI とロボットを融合した知能システムの研究に取り組みます。近年、人工知能の発展によって画像・言語・行動を扱う技術が急速に進展しています。一方で、実世界で活動するロボットには、周囲の環境を認識し、状況に応じて適切に判断し、安定して行動することが求められます。</p>
-<p class="sd" style="max-width:780px;margin-top:-1.5rem">具体的には、ロボットの運動学習・制御、シミュレーションを活用した学習（Sim-to-Real）、視覚や言語を活用した知能化などを主なテーマとして扱います。AI 技術を単に使うだけでなく、「なぜその行動ができるのか」を理解できる数理的な視点も重視し、理論と実装の両面から研究を進めます。</p></div>
-</section>
-
-<div class="dv"><hr></div>
-
+<!-- Publications -->
 <section id="publications">
-<div class="fu"><div class="sl">Publications</div><h2>研究業績</h2></div>
-<div class="fu" style="transition-delay:0.1s">
-<div class="ptabs">
-<button class="ptab active" data-tab="journals">学術論文</button>
-<button class="ptab" data-tab="intl">国際会議</button>
-<button class="ptab" data-tab="domestic">国内発表</button>
-<button class="ptab" data-tab="grants">研究資金</button>
+<div class="fade-up">
+  <div class="section-label">Publications</div>
+  <h2>研究業績</h2>
+</div>
+<div class="fade-up" style="transition-delay:0.1s">
+<div class="pub-tabs">
+  <button class="pub-tab active" data-tab="journals">学術論文</button>
+  <button class="pub-tab" data-tab="intl">国際会議</button>
+  <button class="pub-tab" data-tab="domestic">国内発表</button>
+  <button class="pub-tab" data-tab="grants">研究資金</button>
 </div>
 
-<div class="pg active" id="tab-journals">
-<div class="pi"><div class="py">2026</div><h4>Modern Complex-Valued Hopfield Network for Associative Memory of Continuous and Periodic Patterns</h4><p class="pa2">T. Hashimoto, T. Isokawa, M. Kobayashi, N. Kamiura</p><p class="pv">IEICE Trans. Fundamentals, E109-A(5)<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2026</div><h4>A Voronoi-based Energy Function for Stable Associative Memory in Modern Hopfield Networks</h4><p class="pa2">T. Hashimoto, T. Isokawa, M. Kobayashi, N. Kamiura</p><p class="pv">Nonlinear Theory and Its Applications, IEICE, E17-N(2)<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2026</div><h4>不整地環境における六足ロボットのコマンド指令付き歩行学習に向けたデータ拡張手法の検証</h4><p class="pa2">橋本 尚典, 礒川 悌次郎, 上浦 尚武</p><p class="pv">日本ロボット学会誌<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2025</div><h4>Enhancing computational efficiency of gradient descent in complex-valued Hopfield neural network through GPU parallelization</h4><p class="pa2">T. Hashimoto, T. Isokawa, M. Kobayashi, N. Kamiura</p><p class="pv">Nonlinear Theory and Its Applications, IEICE, 16(1), pp.197–207<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2023</div><h4>Exploring Model Structures to Reduce Data Requirements for Neural ODE Learning in Control Systems</h4><p class="pa2">T. Hashimoto, N. Matsui, N. Kamiura, T. Isokawa</p><p class="pv">J. Adv. Comput. Intell. Intell. Inform., 27(4), pp.537–542<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2022</div><h4>Algorithm for operating an ordinary engineering system as a quantum bit</h4><p class="pa2">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pv">SICE JCMSI, 15(1), pp.96–103<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2021</div><h4>ボルツマンマシンを基盤とした変化検知システムの検証</h4><p class="pa2">橋本尚典, 松井伸之, 伊丹哲郎, 礒川悌次郎</p><p class="pv">システム制御情報学会論文誌, 34(6), pp.167–172<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2021</div><h4>Monitoring particle trajectories for wave function parameter acquisition in quantum edge computation</h4><p class="pa2">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pv">SICE JCMSI, 14(1), pp.150–156<span class="pb">査読有</span></p></div>
+<div class="pub-group active" id="tab-journals">
+<div class="pub-item"><div class="pub-year">2026</div><h4>Modern Complex-Valued Hopfield Network for Associative Memory of Continuous and Periodic Patterns</h4><p class="pub-authors">T. Hashimoto, T. Isokawa, M. Kobayashi, N. Kamiura</p><p class="pub-venue">IEICE Trans. Fundamentals, E109-A(5)<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2026</div><h4>A Voronoi-based Energy Function for Stable Associative Memory in Modern Hopfield Networks</h4><p class="pub-authors">T. Hashimoto, T. Isokawa, M. Kobayashi, N. Kamiura</p><p class="pub-venue">Nonlinear Theory and Its Applications, IEICE, E17-N(2)<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2026</div><h4>不整地環境における六足ロボットのコマンド指令付き歩行学習に向けたデータ拡張手法の検証</h4><p class="pub-authors">橋本 尚典, 礒川 悌次郎, 上浦 尚武</p><p class="pub-venue">日本ロボット学会誌<span class="pub-badge">査読有</span></p></div>
+<div class="pub-item"><div class="pub-year">2025</div><h4>Enhancing computational efficiency of gradient descent in complex-valued Hopfield neural network through GPU parallelization</h4><p class="pub-authors">T. Hashimoto, T. Isokawa, M. Kobayashi, N. Kamiura</p><p class="pub-venue">Nonlinear Theory and Its Applications, IEICE, 16(1), pp.197–207<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2023</div><h4>Exploring Model Structures to Reduce Data Requirements for Neural ODE Learning in Control Systems</h4><p class="pub-authors">T. Hashimoto, N. Matsui, N. Kamiura, T. Isokawa</p><p class="pub-venue">J. Adv. Comput. Intell. Intell. Inform., 27(4), pp.537–542<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2022</div><h4>Algorithm for operating an ordinary engineering system as a quantum bit</h4><p class="pub-authors">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pub-venue">SICE JCMSI, 15(1), pp.96–103<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2021</div><h4>ボルツマンマシンを基盤とした変化検知システムの検証</h4><p class="pub-authors">橋本尚典, 松井伸之, 伊丹哲郎, 礒川悌次郎</p><p class="pub-venue">システム制御情報学会論文誌, 34(6), pp.167–172<span class="pub-badge">査読有</span></p></div>
+<div class="pub-item"><div class="pub-year">2021</div><h4>Monitoring particle trajectories for wave function parameter acquisition in quantum edge computation</h4><p class="pub-authors">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pub-venue">SICE JCMSI, 14(1), pp.150–156<span class="pub-badge">Peer-reviewed</span></p></div>
 </div>
 
-<div class="pg" id="tab-intl">
-<div class="pi"><div class="py">2025</div><h4>Virtual Command Allocation: Enhancing Hexapod Robot Locomotion Through Goal-Conditioned RL</h4><p class="pa2">T. Hashimoto, T. Isokawa, N. Kamiura</p><p class="pv">Neural Information Processing (ICONIP 2024), pp.151–165<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2021</div><h4>Affine control systems under equal time and analytic feedback laws applied to edge quantum computing</h4><p class="pa2">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pv">SICE Annual Conference 2021, pp.679–684<span class="pb">査読有</span></p></div>
-<div class="pi"><div class="py">2020</div><h4>Measuring weighting factor of eigenstates in quantum superposition by classical mechanical 'quantum' computer</h4><p class="pa2">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pv">SICE Annual Conference 2020, pp.445–450<span class="pb">査読有</span></p></div>
+<div class="pub-group" id="tab-intl">
+<div class="pub-item"><div class="pub-year">2025</div><h4>Virtual Command Allocation: Enhancing Hexapod Robot Locomotion Through Goal-Conditioned RL</h4><p class="pub-authors">T. Hashimoto, T. Isokawa, N. Kamiura</p><p class="pub-venue">Neural Information Processing (ICONIP 2024), pp.151–165<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2021</div><h4>Affine control systems under equal time and analytic feedback laws applied to edge quantum computing</h4><p class="pub-authors">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pub-venue">SICE Annual Conference 2021, pp.679–684<span class="pub-badge">Peer-reviewed</span></p></div>
+<div class="pub-item"><div class="pub-year">2020</div><h4>Measuring weighting factor of eigenstates in quantum superposition by classical mechanical 'quantum' computer</h4><p class="pub-authors">T. Itami, N. Matsui, T. Isokawa, N. Kouda, T. Hashimoto</p><p class="pub-venue">SICE Annual Conference 2020, pp.445–450<span class="pub-badge">Peer-reviewed</span></p></div>
 </div>
 
-<div class="pg" id="tab-domestic">
-<div class="pi"><div class="py">2025年9月</div><h4>強化学習による六足ロボットの歩行制御におけるゴール表現が方策学習に与える影響</h4><p class="pa2">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pv">第43回日本ロボット学会学術講演会</p></div>
-<div class="pi"><div class="py">2025年7月</div><h4>四元数ニューラルネットワークによるロボットアームの逆運動学学習</h4><p class="pa2">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pv">第26回コンピューテーショナル・インテリジェンス研究会</p></div>
-<div class="pi"><div class="py">2023年10月</div><h4>画像観測データに基づく低次元動力学モデルの学習と振り上げ制御への適用</h4><p class="pa2">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pv">第66回自動制御連合講演会</p></div>
-<div class="pi"><div class="py">2022年9月</div><h4>Neural ODEによる制御システムの同定に向けた帰納的バイアスの検討</h4><p class="pa2">橋本尚典, 礒川悌次郎, 松井伸之, 上浦尚武</p><p class="pv">第30回インテリジェント・システム・シンポジウム</p></div>
-<div class="pi"><div class="py">2021年9月</div><h4>Energy-Based Modelにおける相互情報量の最大化に基づく表現学習</h4><p class="pa2">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pv">第29回インテリジェント・システム・シンポジウム</p></div>
-<div class="pi"><div class="py">2019年12月</div><h4>制限ボルツマンマシンによる倒立振子の状態推定</h4><p class="pa2">橋本尚典, 松井伸之, 伊丹哲郎, 礒川悌次郎</p><p class="pv">第16回コンピューテーショナル・インテリジェンス研究会</p></div>
+<div class="pub-group" id="tab-domestic">
+<div class="pub-item"><div class="pub-year">2025.09</div><h4>強化学習による六足ロボットの歩行制御におけるゴール表現が方策学習に与える影響</h4><p class="pub-authors">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pub-venue">第43回日本ロボット学会学術講演会</p></div>
+<div class="pub-item"><div class="pub-year">2025.07</div><h4>四元数ニューラルネットワークによるロボットアームの逆運動学学習</h4><p class="pub-authors">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pub-venue">第26回コンピューテーショナル・インテリジェンス研究会</p></div>
+<div class="pub-item"><div class="pub-year">2023.10</div><h4>画像観測データに基づく低次元動力学モデルの学習と振り上げ制御への適用</h4><p class="pub-authors">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pub-venue">第66回自動制御連合講演会</p></div>
+<div class="pub-item"><div class="pub-year">2022.09</div><h4>Neural ODEによる制御システムの同定に向けた帰納的バイアスの検討</h4><p class="pub-authors">橋本尚典, 礒川悌次郎, 松井伸之, 上浦尚武</p><p class="pub-venue">第30回インテリジェント・システム・シンポジウム</p></div>
+<div class="pub-item"><div class="pub-year">2021.09</div><h4>Energy-Based Modelにおける相互情報量の最大化に基づく表現学習</h4><p class="pub-authors">橋本尚典, 礒川悌次郎, 上浦尚武</p><p class="pub-venue">第29回インテリジェント・システム・シンポジウム</p></div>
+<div class="pub-item"><div class="pub-year">2019.12</div><h4>制限ボルツマンマシンによる倒立振子の状態推定</h4><p class="pub-authors">橋本尚典, 松井伸之, 伊丹哲郎, 礒川悌次郎</p><p class="pub-venue">第16回コンピューテーショナル・インテリジェンス研究会</p></div>
 </div>
 
-<div class="pg" id="tab-grants">
-<div class="pi"><div class="py">2024年4月 – 2026年3月</div><h4>機械学習を活用した運動モデルの構築と予測制御</h4><p class="pa2">橋本尚典（代表）</p><p class="pv">次世代研究者挑戦的研究プログラム（SPRING）</p></div>
-<div class="pi"><div class="py">2023年4月 – 2024年3月</div><h4>機械学習を活用した運動モデルの構築と予測制御</h4><p class="pa2">橋本尚典（代表）</p><p class="pv">ひょうご創成フェローシップ</p></div>
+<div class="pub-group" id="tab-grants">
+<div class="pub-item"><div class="pub-year">2024.04 – 2026.03</div><h4>機械学習を活用した運動モデルの構築と予測制御</h4><p class="pub-authors">橋本尚典（代表）</p><p class="pub-venue">次世代研究者挑戦的研究プログラム（SPRING）</p></div>
+<div class="pub-item"><div class="pub-year">2023.04 – 2024.03</div><h4>機械学習を活用した運動モデルの構築と予測制御</h4><p class="pub-authors">橋本尚典（代表）</p><p class="pub-venue">ひょうご創成フェローシップ</p></div>
 </div>
-</div></section>
+</div>
+</section>
 
-<div class="dv"><hr></div>
+<hr class="divider">
 
-<section id="members">
-<div class="fu"><div class="sl">Members</div><h2>メンバー</h2>
-<p class="sd">2026年4月より研究室が発足します。メンバーを随時更新します。</p></div>
-<div class="fu" style="transition-delay:0.1s">
-<div class="mgt">教員</div>
-<div class="mg"><div class="mc"><div class="mi">橋</div><div class="mn"><h4>橋本 尚典</h4><div class="mr">PI / 主宰</div><div class="mt">六足ロボット, CPG, MPC, 強化学習</div></div></div></div>
-<div class="mgt">学生</div>
-<div class="mg"><div class="mc" style="border-style:dashed"><div class="mi" style="opacity:0.3">?</div><div class="mn"><h4 style="color:var(--text-muted)">メンバー募集中</h4><div class="mr">修士・学部学生</div><div class="mt">ロボティクス・機械学習・最適化に興味のある学生を歓迎します</div></div></div></div>
-</div></section>
+<!-- Team -->
+<section id="team">
+<div class="fade-up">
+  <div class="section-label">Team</div>
+  <h2>メンバー</h2>
+  <p class="section-desc">2026年4月より研究室が発足します。メンバーを随時更新します。</p>
+</div>
+<div class="fade-up" style="transition-delay:0.1s">
+  <div class="member-group-title">Faculty</div>
+  <div class="member-grid">
+    <div class="member-card"><div class="member-icon">橋</div><div class="member-info"><h4>橋本 尚典</h4><div class="role">PI / 主宰</div><div class="interests">六足ロボット, CPG, MPC, 強化学習</div></div></div>
+  </div>
+  <div class="member-group-title">Students</div>
+  <div class="member-grid">
+    <div class="member-card" style="border-style:dashed"><div class="member-icon" style="opacity:0.3">?</div><div class="member-info"><h4 style="color:var(--text-muted)">メンバー募集中</h4><div class="role">修士・学部学生</div><div class="interests">ロボティクス・機械学習・最適化に興味のある学生を歓迎します</div></div></div>
+  </div>
+</div>
+</section>
 
-<div class="dv"><hr></div>
+<hr class="divider">
 
+<!-- Access -->
 <section id="access">
-<div class="fu"><div class="sl">Access</div><h2>アクセス</h2></div>
-<div class="ag fu" style="transition-delay:0.1s">
-<div class="am"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.1!2d134.6847!3d34.8731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e0a2e6d3b3b3%3A0x0!2z5YW15bqr55yM56uL5aSn5a2mIOWnq-i3r-W3peWtpuOCreODo-ODs-ODkeOCuQ!5e0!3m2!1sja!2sjp!4v1" allowfullscreen loading="lazy"></iframe></div>
-<div class="ad">
-<div class="ai"><div class="lb">所在地</div><div class="vl">〒671-2280<br>兵庫県姫路市書写2167<br>兵庫県立大学 姫路工学キャンパス 6号館</div></div>
-<div class="ai"><div class="lb">所属</div><div class="vl"><a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a><br><a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">知能数理計算科学研究グループ</a><br>大学院工学研究科 工学専攻 知能情報分野</div></div>
-<div class="ai"><div class="lb">連絡先</div><div class="vl">t.hashimoto (at) ieee.org</div></div>
-<div class="ai"><div class="lb">関連リンク</div><div class="vl"><a href="https://researchmap.jp/Takanori_Hashimoto" target="_blank">researchmap</a> · <a href="https://github.com/Taka-Hashimoto" target="_blank">GitHub</a> · <a href="https://orcid.org/0009-0004-3042-8267" target="_blank">ORCID</a></div></div>
-</div></div></section>
+<div class="fade-up">
+  <div class="section-label">Access</div>
+  <h2>アクセス</h2>
+</div>
+<div class="access-grid fade-up" style="transition-delay:0.1s">
+  <div class="access-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.1!2d134.6847!3d34.8731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3554e0a2e6d3b3b3%3A0x0!2z5YW15bqr55yM56uL5aSn5a2mIOWnq-i3r-W3peWtpuOCreODo-ODs-ODkeOCuQ!5e0!3m2!1sja!2sjp!4v1" allowfullscreen loading="lazy"></iframe></div>
+  <div class="access-details">
+    <div class="access-item"><div class="label">Location</div><div class="value">〒671-2280<br>兵庫県姫路市書写2167<br>兵庫県立大学 姫路工学キャンパス 6号館</div></div>
+    <div class="access-item"><div class="label">Affiliation</div><div class="value"><a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a><br><a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">知能数理計算科学研究グループ</a><br>大学院工学研究科 工学専攻 知能情報分野</div></div>
+    <div class="access-item"><div class="label">Contact</div><div class="value">t.hashimoto (at) ieee.org</div></div>
+    <div class="access-item"><div class="label">Links</div><div class="value"><a href="https://researchmap.jp/Takanori_Hashimoto" target="_blank">researchmap</a> · <a href="https://github.com/Taka-Hashimoto" target="_blank">GitHub</a> · <a href="https://orcid.org/0009-0004-3042-8267" target="_blank">ORCID</a></div></div>
+  </div>
+</div>
+</section>
 
+<!-- Footer -->
 <footer>
-<p>&copy; 2026 橋本研究室 · <a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a></p>
-<p style="margin-top:0.5rem"><a href="https://mujoco.org" target="_blank">MuJoCo</a> · <a href="https://github.com/zalo/mujoco_wasm" target="_blank">mujoco_wasm</a> · <a href="https://github.com/Taka-Hashimoto/hexapod-mjx" target="_blank">hexapod-mjx</a></p>
+  <p>&copy; 2026 橋本研究室 · <a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a></p>
+  <p class="footer-links"><a href="https://mujoco.org" target="_blank">MuJoCo</a> · <a href="https://github.com/zalo/mujoco_wasm" target="_blank">mujoco_wasm</a> · <a href="https://github.com/Taka-Hashimoto/hexapod-mjx" target="_blank">hexapod-mjx</a></p>
 </footer>
 
 <script>
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.12});
-document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
-document.querySelectorAll('.ptab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.pg').forEach(g=>g.classList.remove('active'));tab.classList.add('active');document.getElementById('tab-'+tab.dataset.tab).classList.add('active')})});
+// Fade-in animation
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Publication tabs
+document.querySelectorAll('.pub-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.pub-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pub-group').forEach(g => g.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Nav scroll shadow
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
 </script>
 </body>
 </html>
