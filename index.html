@@ -77,7 +77,15 @@ section h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-0.
 
 /* ── Research ── */
 .bg-alt{background:var(--bg-alt)}
-.research-text{color:var(--text-sub);font-size:0.95rem;max-width:780px;font-weight:300;line-height:2;margin-bottom:1rem}
+.research-text{color:var(--text-sub);font-size:0.95rem;max-width:780px;font-weight:300;line-height:2;margin-bottom:1.5rem}
+.research-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem;margin-top:2rem}
+.research-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:border-color 0.2s,box-shadow 0.2s}
+.research-card:hover{border-color:#bbb;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+.research-card-icon{width:48px;height:48px;border-radius:10px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem}
+.research-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.5rem}
+.research-card p{font-size:0.88rem;color:var(--text-sub);font-weight:300;line-height:1.85}
+.research-card-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.75rem}
+.research-card-tags span{padding:0.2rem 0.55rem;border:1px solid var(--border);border-radius:999px;font-size:0.68rem;color:var(--text-muted)}
 
 /* ── Publications ── */
 .pub-tabs{display:flex;gap:0.4rem;margin-bottom:1.5rem;flex-wrap:wrap}
@@ -208,10 +216,27 @@ footer .footer-links{margin-top:0.5rem}
 <div class="section-inner" style="padding-top:6rem;padding-bottom:6rem">
   <div class="fade-up">
     <h2>研究内容</h2>
+    <p class="research-text">AI とロボットを融合した知能システムの研究に取り組んでいます。「なぜその行動ができるのか」を理解できる数理的な視点を重視し、理論と実装の両面から研究を進めます。</p>
   </div>
-  <div class="fade-up" style="transition-delay:0.1s">
-    <p class="research-text">本研究室では、AI とロボットを融合した知能システムの研究に取り組みます。近年、人工知能の発展によって画像・言語・行動を扱う技術が急速に進展しています。一方で、実世界で活動するロボットには、周囲の環境を認識し、状況に応じて適切に判断し、安定して行動することが求められます。</p>
-    <p class="research-text">具体的には、ロボットの運動学習・制御、シミュレーションを活用した学習（Sim-to-Real）、視覚や言語を活用した知能化などを主なテーマとして扱います。AI 技術を単に使うだけでなく、「なぜその行動ができるのか」を理解できる数理的な視点も重視し、理論と実装の両面から研究を進めます。</p>
+  <div class="research-cards fade-up" style="transition-delay:0.1s">
+    <div class="research-card">
+      <div class="research-card-icon">🦿</div>
+      <h3>歩行制御</h3>
+      <p>生物の運動制御に着想を得た六足ロボットの歩行制御を研究しています。CPG（中枢パターン生成器）を構造的な事前知識として活用し、CMA-ES による進化計算やモデル予測制御（MPC）と組み合わせた階層的制御アーキテクチャを構築します。</p>
+      <div class="research-card-tags"><span>CPG</span><span>MPC</span><span>強化学習</span><span>進化計算</span></div>
+    </div>
+    <div class="research-card">
+      <div class="research-card-icon">🔄</div>
+      <h3>Sim-to-Real</h3>
+      <p>シミュレーション環境で学習した方策を実機ロボットへ転移する技術を研究しています。MuJoCo 等の物理シミュレータでの大規模学習と、実環境とのギャップを埋めるドメインランダマイゼーションやデータ拡張手法に取り組みます。</p>
+      <div class="research-card-tags"><span>MuJoCo</span><span>ドメインランダマイゼーション</span><span>データ拡張</span></div>
+    </div>
+    <div class="research-card">
+      <div class="research-card-icon">🧠</div>
+      <h3>ニューラルネットワークの力学系</h3>
+      <p>ホップフィールドネットワークの連想記憶や Neural ODE によるシステム同定など、ニューラルネットワークの力学系的側面を研究しています。エネルギー関数の設計や安定性解析を通じて、理論的に裏付けのある学習モデルを構築します。</p>
+      <div class="research-card-tags"><span>Hopfield ネットワーク</span><span>Neural ODE</span><span>連想記憶</span></div>
+    </div>
   </div>
 </div>
 </section>
