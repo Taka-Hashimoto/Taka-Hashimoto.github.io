@@ -30,7 +30,7 @@ nav.scrolled{background:rgba(255,255,255,0.92);border-bottom-color:var(--border)
 nav.scrolled .logo{color:var(--text)}
 nav.scrolled .logo span{color:var(--text-muted)}
 nav ul{display:flex;list-style:none;gap:2rem}
-nav a.nl{color:rgba(255,255,255,0.7);text-decoration:none;font-family:var(--en);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s}
+nav a.nl{color:rgba(255,255,255,0.7);text-decoration:none;font-family:var(--sans);font-size:0.82rem;font-weight:500;letter-spacing:0.04em;transition:color 0.2s}
 nav a.nl:hover{color:#fff}
 nav.scrolled a.nl{color:var(--text-sub)}
 nav.scrolled a.nl:hover{color:var(--accent)}
@@ -150,11 +150,11 @@ footer .footer-links{margin-top:0.5rem}
   <a href="#" class="logo">橋本研究室<span>兵庫県立大学</span></a>
   <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">&#9776;</button>
   <ul>
-    <li><a href="#mission" class="nl">Mission</a></li>
-    <li><a href="#research" class="nl">Research</a></li>
-    <li><a href="#publications" class="nl">Publications</a></li>
-    <li><a href="#team" class="nl">Team</a></li>
-    <li><a href="#access" class="nl">Access</a></li>
+    <li><a href="#mission" class="nl">紹介</a></li>
+    <li><a href="#research" class="nl">研究内容</a></li>
+    <li><a href="#publications" class="nl">業績</a></li>
+    <li><a href="#team" class="nl">メンバー</a></li>
+    <li><a href="#access" class="nl">アクセス</a></li>
   </ul>
 </div>
 </nav>
@@ -166,7 +166,7 @@ footer .footer-links{margin-top:0.5rem}
   <div class="hero-overlay"></div>
 </div>
 <div class="hero-content fade-up">
-  <div class="hero-label">University of Hyogo — Graduate School of Engineering</div>
+  <div class="hero-label">兵庫県立大学 大学院工学研究科</div>
   <h1>AI とロボティクスで<br>知能を<em>つくる</em></h1>
   <p>機械学習・強化学習・数理最適化・シミュレーション技術を融合し、<br>ロボットがより賢く、柔軟に行動できる仕組みを追求します。</p>
   <a href="#mission" class="hero-cta">研究室について ↓</a>
@@ -179,8 +179,7 @@ footer .footer-links{margin-top:0.5rem}
 <!-- Mission / About -->
 <section id="mission">
 <div class="fade-up">
-  <div class="section-label">Mission</div>
-  <h2>メンバー紹介</h2>
+  <h2>紹介</h2>
 </div>
 <div class="about-grid fade-up" style="transition-delay:0.1s">
   <div class="about-avatar">橋</div>
@@ -208,7 +207,6 @@ footer .footer-links{margin-top:0.5rem}
 <section id="research" style="padding-top:0;padding-bottom:0">
 <div class="section-inner" style="padding-top:6rem;padding-bottom:6rem">
   <div class="fade-up">
-    <div class="section-label">Research</div>
     <h2>研究内容</h2>
   </div>
   <div class="fade-up" style="transition-delay:0.1s">
@@ -222,7 +220,6 @@ footer .footer-links{margin-top:0.5rem}
 <!-- Publications -->
 <section id="publications">
 <div class="fade-up">
-  <div class="section-label">Publications</div>
   <h2>研究業績</h2>
 </div>
 <div class="fade-up" style="transition-delay:0.1s">
@@ -271,16 +268,15 @@ footer .footer-links{margin-top:0.5rem}
 <!-- Team -->
 <section id="team">
 <div class="fade-up">
-  <div class="section-label">Team</div>
   <h2>メンバー</h2>
   <p class="section-desc">2026年4月より研究室が発足します。メンバーを随時更新します。</p>
 </div>
 <div class="fade-up" style="transition-delay:0.1s">
-  <div class="member-group-title">Faculty</div>
+  <div class="member-group-title">教員</div>
   <div class="member-grid">
     <div class="member-card"><div class="member-icon">橋</div><div class="member-info"><h4>橋本 尚典</h4><div class="role">PI / 主宰</div><div class="interests">六足ロボット, CPG, MPC, 強化学習</div></div></div>
   </div>
-  <div class="member-group-title">Students</div>
+  <div class="member-group-title">学生</div>
   <div class="member-grid">
     <div class="member-card" style="border-style:dashed"><div class="member-icon" style="opacity:0.3">?</div><div class="member-info"><h4 style="color:var(--text-muted)">メンバー募集中</h4><div class="role">修士・学部学生</div><div class="interests">ロボティクス・機械学習・最適化に興味のある学生を歓迎します</div></div></div>
   </div>
@@ -292,16 +288,15 @@ footer .footer-links{margin-top:0.5rem}
 <!-- Access -->
 <section id="access">
 <div class="fade-up">
-  <div class="section-label">Access</div>
   <h2>アクセス</h2>
 </div>
 <div class="access-grid fade-up" style="transition-delay:0.1s">
   <div class="access-map"><iframe src="https://maps.google.com/maps?q=%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%AB%8B%E5%A4%A7%E5%AD%A6+%E5%A7%AB%E8%B7%AF%E5%B7%A5%E5%AD%A6%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9&t=m&z=16&output=embed&hl=ja" allowfullscreen loading="lazy"></iframe></div>
   <div class="access-details">
-    <div class="access-item"><div class="label">Location</div><div class="value">〒671-2280<br>兵庫県姫路市書写2167<br>兵庫県立大学 姫路工学キャンパス 6号館</div></div>
-    <div class="access-item"><div class="label">Affiliation</div><div class="value"><a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a><br><a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">知能数理計算科学研究グループ</a><br>大学院工学研究科 工学専攻 知能情報分野</div></div>
-    <div class="access-item"><div class="label">Contact</div><div class="value">t.hashimoto (at) ieee.org</div></div>
-    <div class="access-item"><div class="label">Links</div><div class="value"><a href="https://researchmap.jp/Takanori_Hashimoto" target="_blank">researchmap</a> · <a href="https://github.com/Taka-Hashimoto" target="_blank">GitHub</a> · <a href="https://orcid.org/0009-0004-3042-8267" target="_blank">ORCID</a></div></div>
+    <div class="access-item"><div class="label">所在地</div><div class="value">〒671-2280<br>兵庫県姫路市書写2167<br>兵庫県立大学 姫路工学キャンパス 6号館</div></div>
+    <div class="access-item"><div class="label">所属</div><div class="value"><a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 工学研究科</a><br><a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">知能数理計算科学研究グループ</a><br>大学院工学研究科 工学専攻 知能情報分野</div></div>
+    <div class="access-item"><div class="label">連絡先</div><div class="value">t.hashimoto (at) ieee.org</div></div>
+    <div class="access-item"><div class="label">リンク</div><div class="value"><a href="https://researchmap.jp/Takanori_Hashimoto" target="_blank">researchmap</a> · <a href="https://github.com/Taka-Hashimoto" target="_blank">GitHub</a> · <a href="https://orcid.org/0009-0004-3042-8267" target="_blank">ORCID</a></div></div>
   </div>
 </div>
 </section>
