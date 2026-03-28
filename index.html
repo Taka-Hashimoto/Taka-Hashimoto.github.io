@@ -41,6 +41,7 @@ nav.scrolled .nav-toggle{color:var(--text)}
 .hero{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:5.5rem 2rem 0;position:relative;overflow:hidden;background:#0d0f14}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg iframe{width:100%;height:100%;border:none;display:block;pointer-events:none}
+.sp-only{display:none}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,20,0.78) 0%,rgba(10,12,20,0.55) 30%,rgba(10,12,20,0.1) 55%,rgba(10,12,20,0.0) 70%,rgba(10,12,20,0.15) 100%)}
 .hero-content{max-width:800px;position:relative;z-index:1;padding-top:2rem}
 .hero-label{font-family:var(--en);font-size:0.72rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1.5rem}
@@ -140,9 +141,10 @@ footer .footer-links{margin-top:0.5rem}
   nav ul.open{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem;gap:1rem;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
   .nav-toggle{display:block}
   .hero{min-height:100vh;padding:7rem 1.5rem 3rem}
-  .hero h1{font-size:1.6rem}
-  .hero h1 br,.hero p br{display:none}
-  .hero p{font-size:0.95rem;max-width:90vw}
+  .pc-only{display:none}
+  .sp-only{display:block}
+  .hero h1{font-size:1.5rem}
+  .hero p{font-size:0.9rem;max-width:90vw;line-height:1.8}
   .hero-bg iframe{width:180%;height:100%;margin-left:-40%}
   .hero-fullscreen{bottom:1rem;right:1rem}
   .about-grid{grid-template-columns:1fr}
@@ -177,8 +179,10 @@ footer .footer-links{margin-top:0.5rem}
   <div class="hero-overlay"></div>
 </div>
 <div class="hero-content fade-up">
-  <h1>シミュレーションと学習で、<br>ロボットの知能を<em>つくる</em></h1>
-  <p>機械学習、数理最適化、シミュレーション技術を組み合わせ、<br>ロボットが認識し、学習し、適応しながら<br>行動できる仕組みを研究しています。</p>
+  <h1 class="pc-only">シミュレーションと学習で、<br>ロボットの知能を<em>つくる</em></h1>
+  <p class="pc-only">機械学習、数理最適化、シミュレーション技術を組み合わせ、<br>ロボットが認識し、学習し、適応しながら<br>行動できる仕組みを研究しています。</p>
+  <h1 class="sp-only">シミュレーションと学習で、ロボットの知能を<em>つくる</em></h1>
+  <p class="sp-only">機械学習、数理最適化、シミュレーション技術を組み合わせ、ロボットが認識し、学習し、適応しながら行動できる仕組みを研究しています。</p>
   <a href="#faculty" class="hero-cta">研究室について ↓</a>
 </div>
 <a href="https://taka-hashimoto.github.io/mujoco_wasm/" target="_blank" class="hero-fullscreen">&#8599; シミュレーションを全画面で開く</a>
