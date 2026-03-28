@@ -71,7 +71,8 @@ section h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-0.
 
 /* ── About (PI) ── */
 .about-grid{display:grid;grid-template-columns:180px 1fr;gap:2.5rem;align-items:start}
-.about-avatar{width:180px;height:180px;border-radius:12px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--accent);font-weight:700}
+.about-avatar{width:180px;height:180px;border-radius:12px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--accent);font-weight:700;overflow:hidden}
+.about-avatar img{width:100%;height:100%;object-fit:cover}
 .about-body h3{font-size:1.4rem;font-weight:700;margin-bottom:0.15rem}
 .about-body .title{font-size:0.82rem;color:var(--text-muted);margin-bottom:1rem}
 .about-body .title a{color:var(--text-sub);text-decoration:none;transition:color 0.2s}
@@ -207,7 +208,7 @@ footer .footer-links{margin-top:0.5rem}
   <h2>教員紹介</h2>
 </div>
 <div class="about-grid fade-up" style="transition-delay:0.1s">
-  <div class="about-avatar">橋</div>
+  <div class="about-avatar"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj7cR-YuumbRxt-KSu9lNe1elefNfLnX5OCLgRcPA4q359VI3DPpSpgvJATTQLg9PmPN6QCMRCtCPA9B3bz_48yioTPNWRnzzA77vBEE-715O7-xOTpueQZqi3NOAQ1BaKq2fy4CnzCcsk/s800/icon_business_man04.png" alt="橋本 尚典"></div>
   <div class="about-body">
     <h3>橋本 尚典</h3>
     <div class="title">Takanori Hashimoto — <a href="https://www.eng.u-hyogo.ac.jp/" target="_blank">兵庫県立大学 大学院工学研究科 工学専攻 知能情報分野</a> / <a href="https://www.eng.u-hyogo.ac.jp/group/group48/" target="_blank">知能数理計算科学研究グループ</a></div>
